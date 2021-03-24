@@ -11,7 +11,7 @@ public class ScannerExample {
 	 in.useDelimiter(","); 
 	 String FirstLine = in.nextLine(); 
 	 Scanner inFirst = new Scanner(FirstLine);
-	 
+	 int count=0;
 	  
 	 inFirst.useDelimiter(",");
 	 List<String> list = new ArrayList<String>();
@@ -32,6 +32,9 @@ public class ScannerExample {
 		 String name = in.nextLine(); 
          Scanner inKeys = new Scanner(name);
          inKeys.useDelimiter(",");
+	 if(count!=0){
+	 System.out.println("  ,");
+	 }else{}		 
          System.out.println("  {\n");
          myWriter.write("  {\n");
      
@@ -43,12 +46,15 @@ public class ScannerExample {
          }   
          System.out.println(" }\n"); 
          myWriter.write("  }\n");
+	 count+=1;		 
          }        
 		        
          in.close();System.out.println("]\n");
          myWriter.write("]\n");
+	 	 
          myWriter.close();
-         }
+         System.out.println(count); 
+	 }
 	  catch(IOException e) {
 		 System.out.println("An error occurred.");
 		 e.printStackTrace();
