@@ -1,5 +1,8 @@
 //csv to json in console
+package com.ToJson;
 import java.util.*;
+import java.io.FileWriter;  
+import java.io.IOException; 
 import java.io.File;
 import java.io.FileNotFoundException;
 public class ScannerExample {
@@ -21,17 +24,35 @@ public class ScannerExample {
 	 
 		
 	 String values;
-	 System.out.println("[\n");
-	 while(in.hasNext()) { 
-     String name = in.nextLine(); 
-     Scanner inKeys = new Scanner(name);
-     inKeys.useDelimiter(",");
-     System.out.println("  {\n");
+	 try {
+		 FileWriter myWriter = new FileWriter("CsvtoJson.html");
+		 System.out.println("[\n");
+		 myWriter.write("[\n");
+		 while(in.hasNext()) { 
+		 String name = in.nextLine(); 
+         Scanner inKeys = new Scanner(name);
+         inKeys.useDelimiter(",");
+         System.out.println("  {\n");
+         myWriter.write("  {\n");
      
-     for(int i =0;i<list.size();i++) {
-	     values = inKeys.next();
-	     System.out.println("     "+'"'+list.get(i)+'"'+":"+'"'+values+'"');             
-	                 
-     }System.out.println(" }\n");  }        
-                 
-     in.close();System.out.println("]\n"); }  }
+         for(int i =0;i<list.size();i++) {
+	       values = inKeys.next();
+	       System.out.println("     "+'"'+list.get(i)+'"'+":"+'"'+values+'"');             
+	       myWriter.write("     "+'"'+list.get(i)+'"'+":"+'"'+values+'"');             
+	             
+         }   
+         System.out.println(" }\n"); 
+         myWriter.write("  }\n");
+         }        
+		        
+         in.close();System.out.println("]\n");
+         myWriter.write("]\n");
+         myWriter.close();
+         }
+	  catch(IOException e) {
+		 System.out.println("An error occurred.");
+		 e.printStackTrace();
+		 }
+	 
+	
+	}  }
